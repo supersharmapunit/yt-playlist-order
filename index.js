@@ -7,8 +7,9 @@ const youtube = google.youtube({
 });
 
 function extractPlaylistId(url) {
-  const unescapedUrl = url.replace(/\\/g, '');
-  const match = unescapedUrl.match(/[?&]list=([a-zA-Z0-9_-]+)/);
+  const decodedUrl = decodeURIComponent(url);
+  const cleanUrl = decodedUrl.replace(/\\/g, '');
+  const match = cleanUrl.match(/[?&]list=([a-zA-Z0-9_-]+)/);
   return match ? match[1] : null;
 }
 
